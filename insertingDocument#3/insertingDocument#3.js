@@ -35,58 +35,68 @@ const studentSchema = new mongoose.Schema({
 const Student = new mongoose.model("Student", studentSchema);
 //INSERTING THE first document/record/row in the students table
 const insertingOnlyOneDocument = async () => {
-    const kazmiiInfo = new Student({
-        name: "Kazmii",
-        degree: "BSCS",
-        semister: 6,
-        cgpa: 2.5
-    });
-    // if u want to check whetther the data is inserted or not so in this case .save() method returns
-    //a promise so to handle promise we can use-
-    // .then() method but here i am using async await method untill my data get stored..
-    //.save() method is use to save one record at a time 
-    const res = await studentInfo.save();
-    console.log(`Single record insertion : ${res}`);
+    try {
+        const kazmiiInfo = new Student({
+            name: "Kazmii",
+            degree: "BSCS",
+            semister: 6,
+            cgpa: 2.5
+        });
+        // if u want to check whetther the data is inserted or not so in this case .save() method returns
+        //a promise so to handle promise we can use-
+        // .then() method but here i am using async await method untill my data get stored..
+        //.save() method is use to save one record at a time 
+        const res = await kazmiiInfo.save();
+        console.log(`Single record insertion : ${res}`);
+    }
+    catch (error) {
+        console.log(`Error Single Record : ${error}`)
+    }
 }
 insertingOnlyOneDocument();
 
 
 //inserting multiple records at once.
 const insertingMultiplesDocument = async () => {
-    const jawadInfo = new Student({
-        name: "Jawad",
-        degree: "BSCS",
-        semister: 6,
-        cgpa: 2.7
-    });
-    const arslanInfo = new Student({
-        name: "Arslan",
-        degree: "BSCS",
-        semister: 6,
-        cgpa: 3.35
-    });
-    const ridaInfo = new Student({
-        name: "Rida",
-        degree: "BSCS",
-        semister: 6,
-        cgpa: 3.8
-    });
-    const wardaInfo = new Student({
-        name: "Warda",
-        degree: "BSCS",
-        semister: 6,
-        cgpa: 3.10
-    });
-    const howraInfo = new Student({
-        name: "Howra",
-        degree: "BSCS",
-        semister: 6,
-        cgpa: 3.22
-    });
-    //insertMany takes an array of records.
-    //to insert we use the table name not the record name as we did to insert the single record like (wardaInfo.save())
-    //but to insert multi records we use tableName.inseryMany function like (student.insertMany[arrayOfRecords,..])
-    const result = Student.insertMany([jawadInfo, arslanInfo, ridaInfo, wardaInfo, howraInfo]);
-    console.log(`Multiples records insertions : ${result}`);
+    try {
+        const jawadInfo = new Student({
+            name: "Jawad",
+            degree: "BSCS",
+            semister: 6,
+            cgpa: 2.7
+        });
+        const arslanInfo = new Student({
+            name: "Arslan",
+            degree: "BSCS",
+            semister: 6,
+            cgpa: 3.35
+        });
+        const ridaInfo = new Student({
+            name: "Rida",
+            degree: "BSCS",
+            semister: 6,
+            cgpa: 3.8
+        });
+        const wardaInfo = new Student({
+            name: "Warda",
+            degree: "BSCS",
+            semister: 6,
+            cgpa: 3.10
+        });
+        const howraInfo = new Student({
+            name: "Howra",
+            degree: "BSCS",
+            semister: 6,
+            cgpa: 3.22
+        });
+        //insertMany takes an array of records.
+        //to insert we use the table name not the record name as we did to insert the single record like (wardaInfo.save())
+        //but to insert multi records we use tableName.inseryMany function like (student.insertMany[arrayOfRecords])
+        const result = Student.insertMany([jawadInfo, arslanInfo, ridaInfo, wardaInfo, howraInfo]);
+        console.log(`Multiples records insertions : ${result}`);
+    }
+    catch (error) {
+        console.log(`Error Multi Records : ${error}`)
+    }
 }
 insertingMultiplesDocument();
