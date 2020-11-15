@@ -62,7 +62,7 @@ const findingDocument = async () => {
         const res$not = await Student.find({ $and: [{ name: "Hamza" }, { cgpa: { $not: { $gte: 3.3 } } }] });
         console.log(` Result of $not operator :${res$not}`);
 
-        //SELECT , SORTING AND COUNT METHODS 
+        //SELECT , SORTING ,LINIT AND COUNT METHODS 
         const res$select = await Student.find({ $or: [{ name: "Munsif" }, { name: "Kazmii" }] }).select({ name: 1 });
         console.log(` Result of res$select operator :${res$select}`);
 
