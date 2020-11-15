@@ -43,8 +43,24 @@ const findingDocument = async () => {
         */
         const res$gt = await Student.find({ cgpa: { $gt: 3.0 } });
         console.log(` Result of $gt operator :${res$gt}`);
+
         const res$in = await Student.find({ name: { $in: ["Munsif", "Kazmii"] } });
         console.log(` Result of $in operator :${res$in}`);
+        //LOGICAL OPERATORS
+        /* 1=> ($or ) Student.find({ $or :[ { name:"Jawad" },{name:"Warda"} ] }); pass array of objects
+           2=> ( $and ) Student.find({ $and: [{ name: "Hamza" }, { cgpa: { $gte: 3.3 } }] }); where name is hamza 
+           and cgpa is greater then 2.9
+           3=> ( $not )  Student.find({ $and: [{ name: "Hamza" }, { cgpa: { $not: { $gte: 3.3 } } }] });
+           where name is hamza and cgpa is not greater then 3.3
+        */
+        const res$or = await Student.find({ $or: [{ name: "Jawad" }, { name: "notExists..." }] });
+        console.log(` Result of $or operator :${res$or}`);
+
+        const res$and = await Student.find({ $and: [{ name: "Hamza" }, { cgpa: { $gte: 3.3 } }] });
+        console.log(` Result of $and operator ** Result is 0 bcoz query doesnt match to any data... :${res$and}`);
+
+        const res$not = await Student.find({ $and: [{ name: "Hamza" }, { cgpa: { $not: { $gte: 3.3 } } }] });
+        console.log(` Result of $not operator :${res$not}`);
 
     } catch (error) {
         console.log(`error : ${error}`);
