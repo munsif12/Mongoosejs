@@ -12,6 +12,7 @@ mongoose.connect("mongodb://localhost:27017/firstTryMongoose", { useNewUrlParser
 //creating Schema for student collections
 const studentSchema = new mongoose.Schema({
     name: {
+        //CUSTOM VALIDATION thapa lec #20
         type: String,
         required: true, //name field must be required
         trim: true, //to elemenate space from before and after the text.. (        munisf ali misri     )=>(munsif ali misri)
@@ -26,7 +27,14 @@ const studentSchema = new mongoose.Schema({
         enum: ["BSCS", "BSse", "bsIT", null],//input must be inbetween these array values else error
     },
     semister: Number,
-    cgpa: Number,
+    cgpa: {
+        type: Number,
+        validate(cgpaValue) {//this is known as CUSTOM VALIDATION THAPA LEC #21
+            if (cgpaValue < 1.5) {
+                throw new Error(`CGPA value must be greater then 1.5 : Your value ${cgpaValue}`);
+            }
+        }
+    },
     date: {
         type: Date,
         default: Date.now
@@ -45,7 +53,7 @@ const insertingOnlyOneDocument = async () => {
             name: "Talha        ",
             degree: "BSCS",
             semister: 6,
-            cgpa: 3.5
+            cgpa: 1.2
         });
         // if u want to check whetther the data is inserted or not so in this case .save() method returns
         //a promise so to handle promise we can use-
