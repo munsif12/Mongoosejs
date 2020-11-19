@@ -29,7 +29,7 @@ const studentSchema = new mongoose.Schema({
     semister: Number,
     cgpa: {
         type: Number,
-        validate(cgpaValue) {//this is known as CUSTOM VALIDATION THAPA LEC #21
+        validate(cgpaValue) {//this is known as CUSTOM VALIDATION THAPA LEC #21 validate is a function which takes an input value and then copmare it with if else => then throws custom error incase of mismatch
             if (cgpaValue < 1.5) {
                 throw new Error(`CGPA value must be greater then 1.5 : Your value ${cgpaValue}`);
             }
@@ -112,4 +112,4 @@ const insertingMultiplesDocument = async () => {
         console.log(`Error Multi Records : ${error}`)
     }
 }
-//insertingMultiplesDocument();
+insertingMultiplesDocument();
