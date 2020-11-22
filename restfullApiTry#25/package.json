@@ -1,0 +1,19 @@
+{
+  "name": "restfull_api_try",
+  "version": "1.0.0",
+  "description": "first time  trying restfull api using NodeandMongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "Munsif Ali Misri",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15",
+    "nodemon": "^2.0.6",
+    "validator": "^13.1.17"
+  }
+}
