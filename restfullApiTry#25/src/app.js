@@ -39,14 +39,13 @@ app.get("/students", async (req, res) => {
     }
 });
 //getting the user data by his id...
-/*
 app.get("/students/:id", async (req, res) => {
     try {
-        clet urlData = req.params.id;
+        let urlData = req.params.id;
         console.log(urlData);
         const singleStudetnRecord = await Student.findById({ _id: `${urlData}` });
         if (!singleStudetnRecord) {
-            res.status(404).send();
+            return res.status(404).send("Student not exists...");
         }
         else res.send(singleStudetnRecord);
     } catch (error) {
@@ -54,8 +53,9 @@ app.get("/students/:id", async (req, res) => {
         res.status(400).send(error);
     }
 });
-*/
+
 //getting the user data by his name
+/*
 app.get("/students/:name", async (req, res) => {
     try {
         let urlData = req.params.name;
@@ -63,12 +63,46 @@ app.get("/students/:name", async (req, res) => {
         const singleStudetnRecordByName = await Student.find({ name: `${urlData}` });
         console.log("after check :" + singleStudetnRecordByName);
         if (!singleStudetnRecordByName) {
-            res.status(404).send("Student is not available");
+            return res.status(404).send("Student is not available");
         }
         else res.send(singleStudetnRecordByName);
     } catch (error) {
         console.log(`error while getting single record of student.. : ${error}`);
         res.status(400).send(error);
+    }
+});
+*/
+
+//deleting student by id
+app.delete("/students/:id", async (req, res) => {
+    try {
+        const deletedResult = await Student.findByIdAndDelete(req.params.id);
+        console.log(deletedResult);
+        if (!deletedResult) {
+            return res.status(400).send("bad request..");
+        }
+        res.status(200).send(deletedResult);
+        console.log("data deleted...");
+    } catch (error) {
+        console.log(`error deleting student.. : ${error}`);
+        res.status(500).send("bad request..");
+    }
+});
+app.patch("/students/:id", async (req, res) => {
+    try {
+        const dataFromBody = await req.body;
+        const id = req.params.id;
+        console.log(dataFromBody);
+        const updatedResult = await Student.findByIdAndUpdate({ _id: id }, dataFromBody, { new: true, useFindAndModify: false });
+        //if (!updatedResult) {
+        //return res.status(400).send("bad request..");
+        //}
+        //console.log(updatedResult);
+        console.log("data updated")
+        res.send(updatedResult);
+    } catch (error) {
+        console.log(`error updating students... : ${error}`);
+        res.status(500).send("bad request..");
     }
 });
 app.listen(port, (req, res) => {
