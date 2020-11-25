@@ -1,11 +1,11 @@
 const express = require("express");
 const Student = require("../studemtsModel/models");//getting the student Model
-const router = new express.Router();//to use router
+const route = new express.Router();//to use router
 router.get("/", (req, res) => {
     res.send("this is home page..");
 });
 //handelling post request and using .then() and .catch() to handle the promise. 
-router.post("/students", (req, res) => {
+route.post("/students", (req, res) => {
     console.log(req.body);
     const newStudent = new Student(req.body);
     newStudent.save().then(() => {
@@ -19,7 +19,7 @@ router.post("/students", (req, res) => {
 });
 //handelling get request and using ASYNC AWAIT to handle the promise..
 //getting all the student data in the database..
-router.get("/students", async (req, res) => {
+route.get("/students", async (req, res) => {
     try {
         const studentResult = await Student.find();
         console.log(studentResult);
@@ -30,7 +30,7 @@ router.get("/students", async (req, res) => {
     }
 });
 //getting the user data by his id...
-router.get("/students/:id", async (req, res) => {
+route.get("/students/:id", async (req, res) => {
     try {
         let urlData = req.params.id;
         console.log(urlData);
@@ -65,7 +65,7 @@ app.get("/students/:name", async (req, res) => {
 */
 
 //deleting student by id
-router.delete("/students/:id", async (req, res) => {
+route.delete("/students/:id", async (req, res) => {
     try {
         const deletedResult = await Student.findByIdAndDelete(req.params.id);
         console.log(deletedResult);
@@ -79,7 +79,7 @@ router.delete("/students/:id", async (req, res) => {
         res.status(500).send("bad request..");
     }
 });
-router.patch("/students/:id", async (req, res) => {
+route.patch("/students/:id", async (req, res) => {
     try {
         const dataFromBody = await req.body;
         const id = req.params.id;
@@ -96,4 +96,4 @@ router.patch("/students/:id", async (req, res) => {
         res.status(500).send("bad request..");
     }
 });
-module.exports = router;
+module.exports = route;
