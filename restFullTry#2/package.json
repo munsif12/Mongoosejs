@@ -8,5 +8,10 @@
     "start": "node ./src/app.js"
   },
   "author": "Munsif Ali Misri",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.16",
+    "validators": "^0.3.1"
+  }
 }
