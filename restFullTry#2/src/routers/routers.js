@@ -8,7 +8,7 @@ routes.post("/student", async (req, res) => {
         const newStudent = await new Student(req.body);
         console.log(`new Student data :${newStudent}`);
         newStudent.save(newStudent);//mistake bcoz .save() return the promise use await or use .then to handle the promise and then sow the result. 
-        res.status(200).send(newStudent);
+        res.status(201).send(newStudent);
         console.log("Data entered successfully...");
     } catch (error) {
         console.log(`Error while inserting data : ${error}`);
@@ -20,7 +20,7 @@ routes.post("/teacher", async (req, res) => {
         const newTeacher = await new Teacher(req.body);
         console.log(`new Teacher data :${newTeacher}`);
         newTeacher.save(newTeacher);
-        res.status(200).send(newTeacher);
+        res.status(201).send(newTeacher);
         console.log("Data entered successfully...");
     } catch (error) {
         console.log(`Error while inserting data : ${error}`);
@@ -57,7 +57,7 @@ routes.get("/student/:id", async (req, res) => {
     try {
         const studentId = req.params.id;
         const studentsData = await Student.find({ _id: studentId });
-        res.status(200).send(studentsData);
+        res.send(studentsData);
         console.log(`Studetn data shown successfully..`);
     } catch (error) {
         console.log(`Error wile getting the student data : ${error}`);
@@ -69,9 +69,9 @@ routes.get("/teacher/:id", async (req, res) => {
         const teacherId = req.params.id;
         const teacherData = await Teacher.find({ _id: teacherId });
         if (teacherData === []) {
-            res.status(500).send("Teacher id is invalid...")
+            res.send("Teacher id is invalid...")
         }
-        res.status(200).send(teacherData);
+        res.send(teacherData);
         console.log(`Teacher data shown successfully..`);
     } catch (error) {
         console.log(`Error wile getting the student data : ${error}`);
@@ -86,7 +86,7 @@ routes.patch("/student/:id", async (req, res) => {
         const studentId = req.params.id;
         const studentBodyData = req.body;
         const studentUpdatedData = await Student.findByIdAndUpdate({ _id: studentId }, studentBodyData, { new: true, useFindAndModify: true });//works like this => { _id:"32424"},{name:"xyx"}
-        res.status(200).send(studentUpdatedData);
+        res.status(201).send(studentUpdatedData);
         console.log("Student data Updated ...");
     } catch (error) {
         console.log(`Error wile Updating the student data : ${error}`);
@@ -98,7 +98,7 @@ routes.patch("/teacher/:id", async (req, res) => {
         const teacherId = req.params.id;
         const teacherBodyData = req.body;
         const teacherUpdatedData = await Teacher.findByIdAndUpdate({ _id: teacherId }, teacherBodyData, { new: true, useFindAndModify: true });//works like this => { _id:"32424"},{name:"xyx"}
-        res.status(200).send(teacherUpdatedData);
+        res.status(201).send(teacherUpdatedData);
         console.log("Teacher data Updated ...");
     } catch (error) {
         console.log(`Error wile Updating the Teacher data : ${error}`);
@@ -112,7 +112,7 @@ routes.delete("/student/:id", async (req, res) => {
         const studentId = req.params.id;
         const studentBodyData = req.body;
         const studentUpdatedData = await Student.findByIdAndDelete({ _id: studentId });
-        res.status(200).send(studentUpdatedData);
+        res.send(studentUpdatedData);
         console.log("Student data deleted..");
     } catch (error) {
         console.log(`Error wile Updating the student data : ${error}`);
@@ -124,7 +124,7 @@ routes.delete("/teacher/:id", async (req, res) => {
         const teacherId = req.params.id;
         const teacherBodyData = req.body;
         const teacherUpdatedData = await Teacher.findByIdAndUpdate({ _id: teacherId }, teacherBodyData, { new: true });//works like this => { _id:"32424"},{name:"xyx"}
-        res.status(200).send(teacherUpdatedData);
+        res.send(teacherUpdatedData);
         console.log("Teacher data deleted..");
     } catch (error) {
         console.log(`Error wile Updating the Teacher data : ${error}`);
