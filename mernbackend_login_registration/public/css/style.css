@@ -1,3 +1,64 @@
-h1 {
-    color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-style: century gothic;
+    color: white;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.mainCont {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    width: 60%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(330deg, rgb(0, 125, 255), rgb(72, 74, 168));
+}
+
+.welcome {
+    border: 1px solid black;
+    height: 35%;
+}
+
+.logo {
+    border: 1px solid black;
+    position: absolute;
+    top: 30%;
+}
+
+.companyDetails {
+    height: 0 auto;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formCont {
+    border: 1px solid black;
+    width: 75%;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input {
+    color: black;
+    height: 65%;
+    width: 65%;
 }
