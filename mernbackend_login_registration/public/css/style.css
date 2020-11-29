@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-style: century gothic;
     color: white;
+    font-family: 'Sansita Swashed', cursive;
 }
 
 body {
@@ -11,54 +12,199 @@ body {
 }
 
 .mainCont {
+    overflow: hidden;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 70%;
     width: 60%;
-    border: 1px solid black;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    border-radius: 25px;
     background: linear-gradient(330deg, rgb(0, 125, 255), rgb(72, 74, 168));
 }
 
 .welcome {
-    border: 1px solid black;
-    height: 35%;
-}
-
-.logo {
-    border: 1px solid black;
-    position: absolute;
-    top: 30%;
+    margin-top: 5px;
+    height: 30%;
+    width: 100%;
 }
 
 .companyDetails {
-    height: 0 auto;
-    width: 75%;
+    height: 15%;
+    width: 85%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
 
+.companyDetails h3 {
+    font-size: 22px;
+    font-family: century gothic;
+    font-weight: lighter;
+}
+
+.companyDetails p {
+    font-size: 12px;
+    font-style: century gothic;
+    font-weight: lighter;
+    padding: 5px;
+}
+
 .formCont {
-    border: 1px solid black;
     width: 75%;
+    height: 17%;
 }
 
 form {
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
 }
 
 input {
     color: black;
-    height: 65%;
-    width: 65%;
+    width: 100%;
+    height: 38%;
+    border: 1px solid white;
+    border-radius: 15px;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    max-width: 250px;
+}
+
+input:hover {
+    transition: 1s ease-in-out;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 9px 12px 0px rgba(0, 43, 43, 0.356);
+}
+
+.socialMediaIcons {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0px;
+    padding-bottom: 20px;
+}
+
+.twitter,
+.facebook,
+.linkedin {
+    padding: 10px;
+    transform: scale(1.3);
+}
+
+.twitter :hover,
+.facebook :hover,
+.linkedin :hover {
+    transition: 1s ease;
+    transform: scale(1.4);
+    color: rgb(184, 184, 190);
+}
+
+.waves {
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    z-index: -9999;
+    animation: munsif 2s linear infinite;
+    background: linear-gradient(10deg, rgba(187, 202, 218, 0.048), rgba(196, 196, 201, 0.103));
+}
+
+@keyframes munsif {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.wave1 {
+    border-radius: 40%;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: -50%;
+    left: 35%;
+    z-index: -999;
+    animation: munsif1 2.4s linear infinite;
+    background: linear-gradient(10deg, rgba(187, 202, 218, 0.048), rgba(196, 196, 201, 0.103));
+}
+
+@keyframes munsif1 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.wave2 {
+    border-radius: 40%;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: -50%;
+    left: -15%;
+    z-index: -99;
+    animation: munsif2 2.8s linear infinite;
+    background: linear-gradient(10deg, rgba(187, 202, 218, 0.048), rgba(196, 196, 201, 0.103));
+}
+
+@keyframes munsif2 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.wave3 {
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: -70%;
+    left: -10%;
+    z-index: -9;
+    animation: munsif3 3.28s linear infinite;
+    background: linear-gradient(10deg, rgba(187, 202, 218, 0.048), rgba(196, 196, 201, 0.103));
+}
+
+@keyframes munsif3 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
