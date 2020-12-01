@@ -9,6 +9,7 @@
 
 body {
     min-height: 100vh;
+    background: linear-gradient(330deg, rgb(0, 125, 255), rgb(30, 40, 81));
 }
 
 .mainCont {
@@ -24,6 +25,7 @@ body {
     align-items: center;
     flex-direction: column;
     border-radius: 25px;
+    box-shadow: -3px -3px 30px 0px rgba(255, 255, 255, 0.75);
     background: linear-gradient(330deg, rgb(0, 125, 255), rgb(72, 74, 168));
 }
 
@@ -43,21 +45,22 @@ body {
 }
 
 .companyDetails h3 {
-    font-size: 22px;
-    font-family: century gothic;
+    font-size: 16px;
+    letter-spacing: 2px;
     font-weight: lighter;
 }
 
 .companyDetails p {
-    font-size: 12px;
-    font-style: century gothic;
+    font-size: 10px;
     font-weight: lighter;
     padding: 5px;
+    letter-spacing: 1px;
 }
 
 .formCont {
     width: 75%;
-    height: 17%;
+    height: 20%;
+    max-width: 200px;
 }
 
 form {
@@ -206,5 +209,22 @@ input:hover {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@media screen and (min-width: 450px) {
+
+    .wave1,
+    .wave2 {
+        display: none;
+        border: 1px solid black;
+    }
+
+    .companyDetails h3 {
+        font-size: 22px;
+    }
+
+    .companyDetails p {
+        font-size: 15px;
     }
 }
