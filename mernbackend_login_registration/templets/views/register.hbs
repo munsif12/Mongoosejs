@@ -7,44 +7,7 @@
 </head>
 
 <body>
-    <div class="mainCont">
-        <div class="waveCont">
-            <div id="wave"></div>
-        </div>
-        <div class="msg">
-            <h3>Create Your <br> Account</h3>
-        </div>
-        <form class="formCont" action="/register" method="POST">
-
-            <div class="fullname">
-                <input type="text" name="name" id="fullname" placeholder="Fullname">
-                <i id="icon" class="far fa-user"></i>
-            </div>
-            <div class="email">
-                <input type="text" name="email" id="email" placeholder="Email">
-                <i id="icon" class="far fa-envelope-open"></i>
-            </div>
-            <div class="pwd">
-                <input type="password" name="pwd" id="pwd" placeholder="Password">
-                <i id="icon" class="fas fa-unlock-alt"></i>
-            </div>
-            <div class="cpwd">
-                <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password">
-                <i id="icon" class="fas fa-unlock-alt"></i>
-            </div>
-            <div class="signup">
-                <input id="signup" type="submit" value="Sign Up">
-            </div>
-
-        </form>
-        <div class="footer">
-            <i id="logoFooter" class="far fa-arrow-alt-circle-right"></i>
-            <div class="user">
-                <p>Already have an account ?</p>
-                <a href="#">Sign in </a>
-            </div>
-        </div>
-    </div>
+    {{>registerBody}}
 </body>
 
 </html>
