@@ -95,12 +95,12 @@ body {
 
 .signup {
     width: 50%;
-    height: 7%;
-    margin-top: 30px;
+    height: 50%;
+    margin-top: 20px;
     margin-left: -30%;
 }
 
-.signup #signup {
+.formCont #signup {
     height: 100%;
     width: 60%;
     color: white;
