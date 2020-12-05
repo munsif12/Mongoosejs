@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const bcrypt = require("bcryptjs");
 const hbs = require("hbs");
 require("./connection/connection");
 const userRegistration = require("./schemaModels/schemaModels");
@@ -27,11 +28,13 @@ app.post("/register", async (req, res) => {
         const userName = req.body.name;
         const password = req.body.pwd;
         const confirmPassword = req.body.cpwd;
+
         if (password === confirmPassword) {
+            const userHashPassword = await bcrypt.hash(password, 4);//1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
             const newUser = new userRegistration({
                 fullname: req.body.name,
                 email: req.body.email,
-                password: req.body.pwd
+                password: userHashPassword
             });
             const userData = await newUser.save();
             console.log(`User registration Data : ${userData}`);
@@ -53,7 +56,7 @@ app.post("/login", async (req, res) => {
         const email = req.body.email;
         const password = req.body.pwd;
         const userData = await userRegistration.findOne({ email: email });
-        if (userData.password === password) {
+        if (await bcrypt.compare(userData.password, password) || userData.password === password) {
             res.status(201).redirect("/");
         }
         else
@@ -63,6 +66,16 @@ app.post("/login", async (req, res) => {
         res.status(400).send(error);
     }
 });
+//trying encryption 
+const hashingTryUsingBcrypt = async () => {
+    const userHashPassword = await bcrypt.hash("tryhash", 8);//1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
+    console.log(userHashPassword);
+    if (bcrypt.compare(userHashPassword, "tryhash")) {//.compare is user to compere cipher text with orignal value thid is used in login
+        console.log(`true`);
+    }
+    else console.log(`false`);
+}
+hashingTryUsingBcrypt();
 app.listen(port, () => {
     console.log(`listenting to the request at ${port}`);
 })
