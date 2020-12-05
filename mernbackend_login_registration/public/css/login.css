@@ -56,7 +56,7 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 30%;
+    height: 40%;
     width: 90%;
 }
 
@@ -100,17 +100,17 @@ form {
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    height: 10%;
+    height: 30%;
 }
 
 .login #login {
-    height: 70%;
+    height: 60%;
     width: 35%;
     border-radius: 15px;
     outline: none;
     background: linear-gradient(100deg, rgb(79, 67, 247), rgb(12, 223, 255));
     border: none;
-    margin-left: 5%;
+    margin-left: 0%;
     text-align: center;
     letter-spacing: 1px;
 }
