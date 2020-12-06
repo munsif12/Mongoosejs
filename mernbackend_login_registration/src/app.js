@@ -30,11 +30,11 @@ app.post("/register", async (req, res) => {
         const confirmPassword = req.body.cpwd;
 
         if (password === confirmPassword) {
-            const userHashPassword = await bcrypt.hash(password, 4);//1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
+            //const userHashPassword = await bcrypt.hash(password, 4);1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
             const newUser = new userRegistration({
                 fullname: req.body.name,
                 email: req.body.email,
-                password: userHashPassword
+                password: req.body.pwd
             });
             const userData = await newUser.save();
             console.log(`User registration Data : ${userData}`);
