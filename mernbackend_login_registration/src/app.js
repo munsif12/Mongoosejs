@@ -26,10 +26,11 @@ app.get("/register", (req, res) => {
 app.post("/register", async (req, res) => {
     try {
         const userName = req.body.name;
+        const userEmail = req.body.email;
         const password = req.body.pwd;
         const confirmPassword = req.body.cpwd;
 
-        if (password === confirmPassword) {
+        if ([userName, userEmail, password, confirmPassword] != null && password === confirmPassword) {
             //const userHashPassword = await bcrypt.hash(password, 4);1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
             const newUser = new userRegistration({
                 fullname: req.body.name,
@@ -37,11 +38,11 @@ app.post("/register", async (req, res) => {
                 password: req.body.pwd
             });
             const userData = await newUser.save();
-            console.log(`User registration Data : ${userData}`);
+            console.log(`User Registered : ${userData}`);
             res.status(201).redirect("/login");
         }
         else
-            res.send("password is not matching..")
+            res.send("passwords are\'nt matching..")
 
     } catch (error) {
         console.log(`Error while registering the user : ${error}`);
@@ -53,14 +54,24 @@ app.get("/login", (req, res) => {
 });
 app.post("/login", async (req, res) => {
     try {
-        const email = req.body.email;
-        const password = req.body.pwd;
-        const userData = await userRegistration.findOne({ email: email });
-        if (await bcrypt.compare(userData.password, password) || userData.password === password) {
-            res.status(201).redirect("/");
+        const userEmail = req.body.email;
+        const userPassword = req.body.pwd;
+        const userData = await userRegistration.findOne({ email: userEmail });//match if the email exists
+        if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
+            if (userData.email && (bcrypt.compare(userData.password, userPassword) || userData.password === userPassword)) {//wether the obj data is valid or not
+                res.status(201).redirect("/");
+            }
+            else
+                res
+                    .status(404)
+                    .send("invalid username or password");
         }
         else
-            res.send("invalid username or password");
+            res
+                .status(404)
+                .json(
+                    { "message": "User not exists check your email and password" }
+                );
     } catch (error) {
         console.log(`Error while login : ${error}`);
         res.status(400).send(error);
@@ -75,7 +86,16 @@ const hashingTryUsingBcrypt = async () => {
     }
     else console.log(`false`);
 }
-hashingTryUsingBcrypt();
+// ---- end ----hashingTryUsingBcrypt();
+
+//trying JSON WEB TOKEN for user verification after user login once
+const jwt = async () => {
+    const createdToken = await webtoken.sign({ id: userRegistration.id /* any user data like id nameemail which is use toverify user */ }, "Secret key=>my name is khan "/*secret keyshould be min 32 chars for security*/, { expiresIn: "10 minutes" });
+    const verify = await webtoken.verify(createdToken, "Secret key=>my name is khan "/*your secreat key to verify that the user is key becoz the secret key is only known by you */);
+    console.log(verify);//eithr true or false
+};
+//jwt();
+// ---- end ---- JSON WEB TOKEN;
 app.listen(port, () => {
     console.log(`listenting to the request at ${port}`);
-})
+});
