@@ -8,7 +8,7 @@
     <form class="formCont" action="/register" method="POST">
 
         <div class="fullname">
-            <input type="text" required name="name" id="fullname" placeholder="Fullname">
+            <input type="text" name="name" id="fullname" placeholder="Fullname" required autocomplete="off">
             <i id="icon" class="far fa-user"></i>
         </div>
         <div class="email">
@@ -17,11 +17,11 @@
         </div>
         <div class="pwd">
             <input type="password" required name="pwd" id="pwd" placeholder="Password">
-            <i id="icon" class="fas fa-unlock-alt"></i>
+            <i id="icon" class="fas fa-unlock-alt Pass"></i>
         </div>
         <div class="cpwd">
             <input type="password" required name="cpwd" id="cpwd" placeholder="Confirm Password">
-            <i id="icon" class="fas fa-unlock-alt"></i>
+            <i id="icon" class="fas fa-unlock-alt cPass"></i>
         </div>
         <div class="signup">
             <input id="signup" type="submit" value="Sign Up">
@@ -32,7 +32,7 @@
         <i id="logoFooter" class="far fa-arrow-alt-circle-right"></i>
         <div class="user">
             <p>Already have an account ?</p>
-            <a href="#">Sign in </a>
+            <a href="/login">Sign in </a>
         </div>
     </div>
 </div>
