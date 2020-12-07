@@ -113,15 +113,16 @@ input:hover {
 .facebook,
 .linkedin {
     padding: 10px;
-    transform: scale(1.3);
+    transform: scale(1.2);
 }
 
 .twitter :hover,
 .facebook :hover,
 .linkedin :hover {
-    transition: 1s ease;
-    transform: scale(1.4);
-    color: rgb(184, 184, 190);
+    cursor: pointer;
+    transition: 0.6s ease;
+    transform: translateY(-2px) scale(1.1);
+    color: rgb(71, 71, 80);
 }
 
 .waves {
@@ -213,6 +214,9 @@ input:hover {
 }
 
 @media screen and (min-width: 450px) {
+    .mainCont {
+        width: 40%;
+    }
 
     .wave1,
     .wave2 {

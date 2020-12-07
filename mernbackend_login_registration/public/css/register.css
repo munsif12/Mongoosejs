@@ -8,6 +8,7 @@
 
 ::placeholder {
     color: white;
+    opacity: 0.6;
 }
 
 body {
@@ -49,7 +50,7 @@ body {
 }
 
 .formCont {
-    margin-top: 20%;
+    margin-top: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -82,6 +83,11 @@ body {
     outline: none;
     text-align: inherit;
     max-width: 90%;
+}
+
+.pwd #icon,
+.cpwd #icon {
+    cursor: pointer;
 }
 
 #icon {
@@ -150,13 +156,18 @@ a {
 }
 
 @media screen and (min-width:460px) {
+    .mainCont {
+        width: 40%;
+    }
+
     .msg {
         margin-left: -56%;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .formCont {
         margin-top: 3%;
+        height: 60%;
     }
 }
 

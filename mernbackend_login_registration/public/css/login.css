@@ -9,6 +9,7 @@
 ::placeholder {
     color: black;
     font-size: 15px;
+    opacity: 0.8;
 }
 
 body {
@@ -83,6 +84,10 @@ form {
     text-align: inherit;
     max-width: 90%;
     color: black;
+}
+
+.pwd #icon {
+    cursor: pointer;
 }
 
 #icon {
@@ -221,5 +226,9 @@ a {
 @media screen and (min-width:460px) {
     #icon {
         margin-top: -1.5%;
+    }
+
+    .mainCont {
+        width: 40%;
     }
 }
