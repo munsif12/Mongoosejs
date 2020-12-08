@@ -1,6 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const bcrypt = require("bcryptjs");
+const webtoken = require("jsonwebtoken");
 const hbs = require("hbs");
 require("./connection/connection");
 const userRegistration = require("./schemaModels/schemaModels");
@@ -8,6 +10,7 @@ const async = require("hbs/lib/async");
 const port = process.env.PORT || 8000;
 const app = express();
 
+console.log(process.env.secret__key);
 app.use(express.static(path.join(__dirname, "../public")));// defiining path for static files
 app.set("view engine", "hbs");//telling express file to set up handle bars which is hbs
 app.set("views", path.join(__dirname, "../templets/views"));//insted of looking views folder in look into templetsPath var
@@ -37,9 +40,15 @@ app.post("/register", async (req, res) => {
                 email: req.body.email,
                 password: req.body.pwd
             });
-            const userData = await newUser.save();
-            console.log(`User Registered : ${userData}`);
-            res.status(201).redirect("/login");
+            const tokenResult = await newUser.gernerateToken();
+            if (tokenResult != null) {
+                console.log(`successfull registration with token :${tokenResult}`);
+                const userData = await newUser.save();
+                console.log(`User Registered : ${userData}`);
+                res.status(201).redirect("/login");
+            }
+            else
+                res.status(500).send("error while generating user tokens");
         }
         else
             res.send("passwords are\'nt matching..")
@@ -59,6 +68,8 @@ app.post("/login", async (req, res) => {
         const userData = await userRegistration.findOne({ email: userEmail });//match if the email exists
         if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
             if (userData.email && (bcrypt.compare(userData.password, userPassword) || userData.password === userPassword)) {//wether the obj data is valid or not
+                const tokenResult = await userData.gernerateToken();
+                console.log(tokenResult);
                 res.status(201).redirect("/");
             }
             else
@@ -94,7 +105,7 @@ const jwt = async () => {
     const verify = await webtoken.verify(createdToken, "Secret key=>my name is khan "/*your secreat key to verify that the user is key becoz the secret key is only known by you */);
     console.log(verify);//eithr true or false
 };
-//jwt();
+jwt();
 // ---- end ---- JSON WEB TOKEN;
 app.listen(port, () => {
     console.log(`listenting to the request at ${port}`);
