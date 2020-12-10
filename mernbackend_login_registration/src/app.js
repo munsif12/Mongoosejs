@@ -4,6 +4,7 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 const webtoken = require("jsonwebtoken");
 const hbs = require("hbs");
+const cookieParser = require("cookie-parser");
 require("./connection/connection");
 const userRegistration = require("./schemaModels/schemaModels");
 const async = require("hbs/lib/async");
@@ -18,13 +19,24 @@ hbs.registerPartials(path.join(__dirname, "../templets/partials"))
 
 app.use(express.json());//if the data is comming in json format
 app.use(express.urlencoded({ extended: false }));//if the data is comming from url
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
     res.render("index");
 });
+app.get("/welcomePage/secretPage", (req, res) => {
+    console.log(`OSM COOKIE ${req.cookie.logincookie}`);
+    res.render("secretPage");
+});
+app.get("/covid19", (req, res) => {
+    res.render("covidCasesProject");
+});
 //user registration
 app.get("/register", (req, res) => {
     res.render("register");
+});
+app.get("/welcomePage", (req, res) => {
+    res.render("welcomePage");
 });
 app.post("/register", async (req, res) => {
     try {
@@ -42,6 +54,10 @@ app.post("/register", async (req, res) => {
             });
             const tokenResult = await newUser.gernerateToken();
             if (tokenResult != null) {
+                res.cookie("firstCookie", tokenResult, {
+                    expires: new Date(Date.now() + 200000),
+                    httpOnly: true
+                });
                 console.log(`successfull registration with token :${tokenResult}`);
                 const userData = await newUser.save();
                 console.log(`User Registered : ${userData}`);
@@ -67,22 +83,28 @@ app.post("/login", async (req, res) => {
         const userPassword = req.body.pwd;
         const userData = await userRegistration.findOne({ email: userEmail });//match if the email exists
         if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
-            if (userData.email && (bcrypt.compare(userData.password, userPassword) || userData.password === userPassword)) {//wether the obj data is valid or not
+            const truePass = await bcrypt.compare(userData.password, userPassword);
+            console.log(truePass);
+            console.log(userData.password + " ------ " + userPassword);
+            if (truePass == true || userData.password === userPassword) {//wether the obj data is valid or not
                 const tokenResult = await userData.gernerateToken();
+                res.cookie("logincookie", tokenResult, {
+                    expires: new Date(Date.now() + 500000),
+                    httpOnly: true
+                    // secure:true => only run when url type is https 
+                });
+
                 console.log(tokenResult);
-                res.status(201).redirect("/");
+                res.status(201).redirect("welcomePage");
+
             }
             else
-                res
-                    .status(404)
-                    .send("invalid username or password");
+                res.status(404).send("invalid password");
         }
         else
-            res
-                .status(404)
-                .json(
-                    { "message": "User not exists check your email and password" }
-                );
+            res.status(404).json(
+                { "message": "User not exists check your email and password" }
+            );
     } catch (error) {
         console.log(`Error while login : ${error}`);
         res.status(400).send(error);
@@ -90,15 +112,15 @@ app.post("/login", async (req, res) => {
 });
 //trying encryption 
 const hashingTryUsingBcrypt = async () => {
-    const userHashPassword = await bcrypt.hash("tryhash", 8);//1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
+    const userHashPassword = await bcrypt.hash("1234", 4);//1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
     console.log(userHashPassword);
-    if (bcrypt.compare(userHashPassword, "tryhash")) {//.compare is user to compere cipher text with orignal value thid is used in login
+    if (bcrypt.compare(userHashPassword, "1234")) {//.compare is user to compere cipher text with orignal value thid is used in login
         console.log(`true`);
     }
     else console.log(`false`);
 }
 // ---- end ----hashingTryUsingBcrypt();
-
+hashingTryUsingBcrypt();
 //trying JSON WEB TOKEN for user verification after user login once
 const jwt = async () => {
     const createdToken = await webtoken.sign({ id: userRegistration.id /* any user data like id nameemail which is use toverify user */ }, "Secret key=>my name is khan "/*secret keyshould be min 32 chars for security*/, { expiresIn: "10 minutes" });
