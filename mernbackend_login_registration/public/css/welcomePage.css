@@ -3,7 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     color: white;
-    font-family: 'Sansita Swashed', cursive;
+    font-family: century gothic;
+}
+
+a {
+    text-decoration: none;
 }
 
 ::placeholder {
@@ -13,39 +17,290 @@
 }
 
 body {
-    min-height: 100vh;
-    min-width: 100vw;
+    height: 100vh;
     background: linear-gradient(330deg, rgb(0, 125, 255), rgb(30, 40, 81));
 }
 
 .navbar {
-    min-height: 15%;
-    width: 100%;
-    border: 1px solid black;
+    height: 10%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .navbar>.navbar__logo {
-    margin-left: 15%;
+    margin-left: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 110%;
+    background-color: orange;
+    padding: 0px 5px 0px 5px;
+}
+
+.navbar>.navbar__logo>.logo>h4 {
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .navbar>.menuItems {
+    display: flex;
+    justify-content: center;
     width: 50%;
+    z-index: 9999;
 }
 
 .navbar>.menuItems>ul {
+    margin: 10px;
     display: flex;
-    justify-content: space-between;
-    padding: 0% 8%;
+}
+
+.navbar>.menuItems>ul>a {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.navbar>.menuItems>ul>a>li {
+    list-style-type: none;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#logout {
+    transition: 1s ease-in;
+    border-radius: 15px;
+    background: white;
+    color: orange;
+    margin-left: 20px;
+}
+
+#logout li {
+    color: orange;
+    font-weight: bolder;
+}
+
+#logout>li:hover {
+    animation: 1s ease-in;
+    color: white;
+    border-radius: 15px;
+}
+
+.navbar>.menuItems>ul>a:hover li {
+    animation: 1s ease-in;
+    background-color: orange;
+    color: white;
+    border-radius: 15px;
+}
+
+/* navbar links styling */
+.mainBody {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.navbar>.menuItems>ul>li {
-    list-style-type: none;
-    padding: 0 10px;
-    text-decoration: none;
+.mainBody>.body__left {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -7%;
+}
+
+.mainBody>.body__left>.bodyLeft__quote {
+    width: 60%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    margin-left: -12%;
+}
+
+.mainBody>.body__left>.bodyLeft__heading {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    font-weight: bolder;
+}
+
+.mainBody>.body__left>.bodyLeft__downloadable {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+.mainBody>.body__left>.bodyLeft__downloadable>.bodyLeft__icons {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4%;
+}
+
+.mainBody>.body__left>.bodyLeft__downloadable>.bodyLeft__icons>a>.js {
+    transform: scale(1.7);
+    color: yellow;
+}
+
+.mainBody>.body__left>.bodyLeft__downloadable>.bodyLeft__icons>a>.mongoo {
+    transform: rotate(40deg) scale(1.7);
+    color: rgb(0, 255, 0);
+}
+
+.bodyLeft__icons>a>img {
+    height: 200px;
+    background: transparent;
+}
+
+.mainBody>.body__right {
+    height: 100%;
+    width: 40%;
+    margin-top: -7%;
+}
+
+.mainBody>.body__right>svg {
+    height: 100%;
+    width: 100%;
+}
+
+/* projects section */
+.myProjects {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    overflow: scroll;
+    /* background: linear-gradient(133deg, rgb(248, 248, 248), rgb(87, 87, 87)); */
+}
+
+.myProjects::-webkit-scrollbar {
+    /*to hide the scrollbar*/
+    display: none;
+}
+
+/* projects styling */
+.myProjects>.projects {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    animation: 2s ease-in;
+    margin: 0px 15% 0px 15%;
+}
+
+.myProjects>.project__heading {
+    padding: 20px 0px 20px 0px;
+    font-size: 32px;
+    word-spacing: 1px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.myProjects>.projects>.projectName {
+    height: 35%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 1%;
+}
+
+.myProjects>.projects>.projectName>.project__details {
+    position: absolute;
+    transition: 1s ease-in-out;
+    transform: translateY(110%);
+    background: rgba(0, 0, 0, 0.185);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: black;
+}
+
+.myProjects>.projects>.projectName:hover .project__details {
+    transform: translateY(0%);
+}
+
+.myProjects>.projects>.projectName:hover {
+    transform: translateY(-20px);
+    box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.644);
+}
+
+.myProjects>.projects>.projectName>.project__img {
+    height: 100%;
+    width: 100%;
+}
+
+.myProjects>.projects>.projectName>.project__img>img {
+    height: 100%;
+    width: 100%;
+}
+
+/* styling the hover effect of proect  */
+.myProjects>.projects>.projectName>.project__details>h1 {
+    margin: 3px 0px 3px 2px;
+    color: black;
+}
+
+.myProjects>.projects>.projectName>.project__details>p {
+    font-size: 12px;
+    margin: 0px 2px 0px 10px;
+    color: black;
+    font-weight: 500;
+}
+
+.myProjects>.projects>.projectName>.project__details>h3 {
+    color: black;
+    margin: 0px 2px 0px -20px;
+}
+
+.myProjects>.projects>.projectName>.project__details>ul>li {
+    color: black;
+    margin: 0px 2px 0px -25px;
+}
+
+/* footer styling  */
+.footer {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer>.logo {
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: orange;
+    padding: 0px 5px 0px 5px;
+}
+
+.footer>.logo>h4 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.footer>.copyright {
+    width: 30%;
+    margin-right: 10%;
+}
+
+.footer>.copyright>ul>li>p {
+    font-size: 17px;
+    margin-right: 30%;
 }
