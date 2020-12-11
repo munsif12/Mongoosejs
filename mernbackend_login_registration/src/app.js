@@ -82,9 +82,10 @@ app.post("/login", async (req, res) => {
         const userEmail = req.body.email;
         const userPassword = req.body.pwd;
         const userData = await userRegistration.findOne({ email: userEmail });//match if the email exists
+        const truePass = await bcrypt.compare(userPassword, userData.password);
+        console.log(`bcrypt result ${truePass}`);
         if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
-            const truePass = await bcrypt.compare(userData.password, userPassword);
-            console.log(truePass);
+            console.log(userData);
             console.log(userData.password + " ------ " + userPassword);
             if (truePass == true || userData.password === userPassword) {//wether the obj data is valid or not
                 const tokenResult = await userData.gernerateToken();
@@ -93,10 +94,8 @@ app.post("/login", async (req, res) => {
                     httpOnly: true
                     // secure:true => only run when url type is https 
                 });
-
                 console.log(tokenResult);
                 res.status(201).redirect("welcomePage");
-
             }
             else
                 res.status(404).send("invalid password");
@@ -114,7 +113,7 @@ app.post("/login", async (req, res) => {
 const hashingTryUsingBcrypt = async () => {
     const userHashPassword = await bcrypt.hash("1234", 4);//1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
     console.log(userHashPassword);
-    if (bcrypt.compare(userHashPassword, "1234")) {//.compare is user to compere cipher text with orignal value thid is used in login
+    if (bcrypt.compare("$2a$04$rUWrr8kjkoGHDCkSsKOb8Opj3th9Wp1dfTmWuHxEOboyN5AtuMdLC", "1234")) {//.compare is user to compere cipher text with orignal value thid is used in login
         console.log(`true`);
     }
     else console.log(`false`);
@@ -127,7 +126,7 @@ const jwt = async () => {
     const verify = await webtoken.verify(createdToken, "Secret key=>my name is khan "/*your secreat key to verify that the user is key becoz the secret key is only known by you */);
     console.log(verify);//eithr true or false
 };
-jwt();
+// jwt();
 // ---- end ---- JSON WEB TOKEN;
 app.listen(port, () => {
     console.log(`listenting to the request at ${port}`);

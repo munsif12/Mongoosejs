@@ -9,6 +9,52 @@
     text-align: center;
 }
 
+.addingLoader {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.loader {
+    position: absolute;
+    height: 10%;
+    width: 10%;
+    border: 5px solid black;
+    border-radius: 250px;
+    z-index: 999;
+    margin: 0px 0 0 100px;
+    animation: munsif 1s linear infinite;
+    border-top: 5px solid red;
+    border-bottom: 5px solid red;
+    margin-left: -100px;
+    margin-top: 20px;
+}
+
+@keyframes munsif {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader::after {
+    content: ".";
+    position: absolute;
+    color: rgb(0, 253, 63);
+    width: 150%;
+    height: 150%;
+    top: -40px;
+    left: -15px;
+    font-size: 5rem;
+}
+
 i {
     padding: 5px;
     transform: scale(1.6);
@@ -99,6 +145,7 @@ body {
     border-top: 2px solid rgb(112, 112, 233);
     border-bottom: 2px solid rgb(112, 112, 233);
     color: blue;
+    cursor: pointer;
     /* 177, 240, 229 */
 }
 

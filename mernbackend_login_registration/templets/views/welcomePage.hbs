@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>links}}
     <link rel="stylesheet" href="css/welcomePage.css">
+    <script src="js/welcomePage.js"></script>
     <title>Document</title>
 </head>
 
@@ -13,17 +13,129 @@
         {{!-- logo --}}
         <div class="navbar__logo">
             <div class="logo">
-                <p>Munsif</p>
+                <h4>Munsif.</h4>
             </div>
         </div>
         {{!-- navBar items --}}
         <div class="menuItems">
             <ul>
-                <li>Home</li>
-                <li>Gallery</li>
-                <li>About Me</li>
-                <li>Contect</li>
-                <li>Logout</li>
+                <a href="#home">
+                    <li>Home</li>
+                </a>
+                <a href="#gallery">
+                    <li>Gallery</li>
+                </a>
+                <a href="/welcomePage/secretPage">
+                    <li>About Me</li>
+                </a>
+                <a href="#contect">
+                    <li>Contect</li>
+                </a>
+                <a id="logout" href="#logout">
+                    <li>Logout</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <div class="mainBody">
+        <div class="body__left">
+            <div class="bodyLeft__quote">
+                <p> APPINO provides amazing and outstanding features</p>
+            </div>
+            <div class="bodyLeft__heading">
+                <p>AWESOME MERN STACK</p>
+            </div>
+            <div class="bodyLeft__downloadable">
+                <p>free download here</p>
+                <div class="bodyLeft__icons">
+                    <a class="icon__mongodb" href="#">
+                        {{!-- <img src="css/nodejs.jpg" alt="nodejs"> --}}
+                        <i class="fab fa-envira icon mongoo"></i>
+                    </a>
+                    <a class="icon__nodejs" href="#">
+                        {{!-- <img src="css/mongodb.png" alt="nodejs"> --}}
+                        <i class="fab fa-js icon js"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="body__right">
+            {{>welcome__svg}}
+        </div>
+    </div>
+    <div class="myProjects">
+        <h1 class="project__heading">My Projects</h1>
+        <div class="projects">
+            <div class="covid19 projectName">
+                <div class="covid__details project__details">
+                    <h1>Project Details </h1>
+                    <p>Used JAVASCRIPT fetch method to get the realtime coronavirus cases around the world you just hav
+                        to input your country name and get no. of differenrt covid cases .</p>
+                    <h3>Technologies used :-</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JAVASCRIPT</li>
+                    </ul>
+                </div>
+                <div class="covid_img project__img">
+                    <img src="css/covidPic.png" alt="" srcset="">
+                </div>
+            </div>
+            <div class="currency projectName">
+                <div class="currency__details project__details">
+                    <p>Convert any currency you want</p>
+                </div>
+                <div class="currency_img project__img">
+                    <img src="css/nodejs.jpg" alt="" srcset="">
+                </div>
+            </div>
+            <div class="weatherApp projectName">
+                <div class="weatherApp__details project__details">
+                    <p>gives your current weather details</p>
+                </div>
+                <div class="weatherApp_img project__img">
+                    <img src="css/nodejs.jpg" alt="" srcset="">
+                </div>
+            </div>
+            <div class="weatherApp projectName">
+                <div class="weatherApp__details project__details">
+                    <p>gives your current weather details</p>
+                </div>
+                <div class="weatherApp_img project__img">
+                    <img src="css/nodejs.jpg" alt="" srcset="">
+                </div>
+            </div>
+            <div class="weatherApp projectName">
+                <div class="weatherApp__details project__details">
+                    <p>gives your current weather details</p>
+                </div>
+                <div class="weatherApp_img project__img">
+                    <img src="css/nodejs.jpg" alt="" srcset="">
+                </div>
+            </div>
+            <div class="weatherApp projectName">
+                <div class="weatherApp__details project__details">
+                    <p>gives your current weather details</p>
+                </div>
+                <div class="weatherApp_img project__img">
+                    <img src="css/nodejs.jpg" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="logo">
+            <h4>MUNSIF.</h4>
+        </div>
+        <div class="copyright">
+            <ul>
+                <li>
+                    <p>Allrights reserved © 2020</p>
+                </li>
+                <li>
+                    <p>Munsif Ali Misri</p>
+                </li>
             </ul>
         </div>
     </div>

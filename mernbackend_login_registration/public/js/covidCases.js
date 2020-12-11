@@ -1,5 +1,4 @@
 window.onload = () => {
-    alert("Input your location for realtime data 👌")
     const userInput = document.querySelector("#loc");
     const submit = document.querySelector("#submit");
     const region = document.querySelector(".regionName");
@@ -13,6 +12,7 @@ window.onload = () => {
     const NOCtotalCase = document.querySelector(".NOCtotalCase");
     const NOCrecentDeaths = document.querySelector(".NOCrecentDeaths");
     const NOCtotalTests = document.querySelector(".NOCtotalTests");
+    const loader = document.querySelector(".addingLoader");
     const fetchingDataFromApi = async () => {
         const userLocation = userInput.value;
         if (userLocation === "") {
@@ -21,7 +21,14 @@ window.onload = () => {
             submit.style.cssText = "border-right: 2px solid red;border-top: 2px solid red;border-bottom: 2px solid red;"
         }
         else {
+            var cd;
             try {
+                var body = document.querySelector("body");
+                body.style.background = "rgba(" + 0 + "," + 0 + "," + 0 + ",0.185)";
+                cd = document.createElement("div");
+                cd.className = "loader";
+                console.log(cd);
+                loader.appendChild(cd);
                 const url = fetch(`https://covid-193.p.rapidapi.com/history?country=${userLocation}`, {
                     "method": "GET",
                     "headers": {
@@ -45,10 +52,16 @@ window.onload = () => {
                         NOCtotalCase.innerHTML = working[0].response[0].cases.new;
                         NOCrecentDeaths.innerHTML = working[0].response[0].deaths.new;
                         NOCtotalTests.innerHTML = working[0].response[0].tests.total;
+                        loader.removeChild(cd);
+                        body.style = "none";
                     })
                     .catch(err => {
                         alert("Enter a valid country name...");
+                        // loader.removeChild("loader");
+                        loader.removeChild(cd);
+                        body.style = "none";
                     });
+
                 console.log(working);
 
             } catch (error) {
