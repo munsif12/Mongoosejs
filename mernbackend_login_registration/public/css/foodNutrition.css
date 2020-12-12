@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::placeholder {
+    text-align: center;
+    color: white;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.centerDiv {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(235deg, rgb(253, 253, 253), rgb(22, 21, 21));
+}
+
+.foodNutApp {
+    height: 80vh;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    grid-row-gap: 2%;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: black;
+    position: relative;
+    box-shadow: 0px 0px 20px -2px rgb(69, 69, 70);
+
+}
+
+.mainImg {
+    height: 30%;
+    width: 100%;
+    margin-top: -100px;
+}
+
+.mainImg img {
+    margin-top: -10px;
+    height: 100%;
+    width: 100%;
+    clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 83%, 79% 100%, 57% 85%, 11% 100%, 0 78%, 0 32%, 0 0);
+}
+
+.userInput {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    width: 100%;
+    /* margin: 2%; */
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    place-items: center;
+}
+
+.userInput #food {
+    height: 5vh;
+    width: 45vw;
+    border-right: none;
+    outline: none;
+    border-radius: 15px 0 0 15px;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    text-align: center;
+    color: #fff;
+    background: transparent;
+    font-size: 1.2rem;
+    line-height: 1rem;
+}
+
+.userInput #submit {
+    height: 5vh;
+    width: 20vw;
+    border-left: none;
+    border-radius: 0 15px 15px 0;
+    font-size: 15px;
+    font-weight: bold;
+    background: none;
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    color: white;
+    cursor: pointer;
+    /* 177, 240, 229 */
+}
+
+.inputImage {
+    margin: 1%;
+    border-radius: 10px;
+    height: 40%;
+    width: 90%;
+}
+
+.inputImage img {
+    height: 100%;
+    width: 100%;
+    background: black;
+    color: white;
+    line-height: 22px;
+    border-radius: 10px;
+}
+
+h4 {
+    position: absolute;
+    top: 16%;
+    left: 3%;
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+.foodDetails {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: 100%;
+    top: 80%;
+}
+
+.Enerc_Kcal,
+.PROCNT,
+.FAT,
+.FIBTG {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 8vh;
+    width: 100%;
+    margin: 5px;
+    /* box-shadow: 1px 1px 2px 0px rgba(199, 200, 207, 1); */
+    box-shadow: 0px 0px 6px -2px rgb(226, 227, 233);
+    color: white;
+    margin-top: 45px;
+    border-radius: 8px;
+    word-wrap: break-word;
+}
