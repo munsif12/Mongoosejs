@@ -312,3 +312,9 @@ body {
         transform: translate(0px);
     }
 }
+
+@media screen and (min-width:780px) {
+    .covidApp {
+        width: 40vw;
+    }
+}
