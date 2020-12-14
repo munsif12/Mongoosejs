@@ -4,6 +4,7 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 const webtoken = require("jsonwebtoken");
 const hbs = require("hbs");
+const request = require("request");
 const cookieParser = require("cookie-parser");
 require("./connection/connection");
 const userRegistration = require("./schemaModels/schemaModels");
@@ -107,6 +108,40 @@ app.post("/login", async (req, res) => {
     } catch (error) {
         console.log(`Error while login : ${error}`);
         res.status(400).send(error);
+    }
+});
+//food nutrition project
+app.get("/foodNutrition", (req, res) => {
+    var data;
+    if (req.body.food = "banana") {
+        const url = {
+            method: 'GET',
+            url: 'https://rapidapi.p.rapidapi.com/parser',
+            qs: { ingr: `${req.body.food}` },
+            headers: {
+                'x-rapidapi-host': 'edamam-food-and-grocery-database.p.rapidapi.com',
+                'x-rapidapi-key': '1f98988481mshaf71d0b16041b35p14a73cjsn1e20a5387d6d',
+                useQueryString: true
+            }
+        };
+
+        request(url, function (error, response, body) {
+            if (error) throw new Error(error);
+            var useableData = JSON.parse(body);
+            data = [useableData];
+            console.log(data[0].parsed[0].food.nutrients);
+            console.log(data[0].parsed[0].food.image);
+            // console.log(readFile.replace("{%PROCNT%}", (data[0].parsed[0].food.nutrients.Enerc_Kcal)));
+            // readFile.replace("{%PROCNT%}", (data[0].parsed[0].food.nutrients.Enerc_Kcal));
+            res.render("foodNutrition", {
+                imageUrl: `${data[0].parsed[0].food.image}`,
+                lable: `${data[0].parsed[0].food.label}`,
+                Enerc_Kcal: `${data[0].parsed[0].food.nutrients.ENERC_KCAL}`, //${data[0].parsed[0].food.uri.nutrients}
+                PROCNT: `${data[0].parsed[0].food.nutrients.PROCNT}`,
+                FAT: `${data[0].parsed[0].food.nutrients.FAT}`,
+                CHOCDF: `${data[0].parsed[0].food.nutrients.CHOCDF}`
+            });
+        });
     }
 });
 //trying encryption 
