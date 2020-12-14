@@ -317,4 +317,12 @@ body {
     .covidApp {
         width: 40vw;
     }
+
+    .userLocation #loc {
+        width: 30vw;
+    }
+
+    .userLocation #submit {
+        width: 12%;
+    }
 }
