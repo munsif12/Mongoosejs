@@ -301,7 +301,7 @@ body {
     }
 
     50% {
-        transform: translate(-0px)
+        transform: translate(0px)
     }
 
     75% {
