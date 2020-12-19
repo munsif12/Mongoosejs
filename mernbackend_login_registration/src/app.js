@@ -12,7 +12,6 @@ const async = require("hbs/lib/async");
 const port = process.env.PORT || 8000;
 const app = express();
 
-console.log(process.env.secret__key);
 app.use(express.static(path.join(__dirname, "../public")));// defiining path for static files
 app.set("view engine", "hbs");//telling express file to set up handle bars which is hbs
 app.set("views", path.join(__dirname, "../templets/views"));//insted of looking views folder in look into templetsPath var
@@ -25,12 +24,11 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
     res.render("index");
 });
-app.get("/welcomePage/secretPage", (req, res) => {
-    console.log(`OSM COOKIE ${req.cookie.logincookie}`);
-    res.render("secretPage");
-});
 app.get("/covid19", (req, res) => {
     res.render("covidCasesProject");
+});
+app.get("/currencyConvertor", (req, res) => {
+    res.render("currencyConvertor");
 });
 //user registration
 app.get("/register", (req, res) => {
@@ -68,7 +66,7 @@ app.post("/register", async (req, res) => {
                 res.status(500).send("error while generating user tokens");
         }
         else
-            res.send("passwords are\'nt matching..")
+            res.send("passwords are\'nt matching..");
 
     } catch (error) {
         console.log(`Error while registering the user : ${error}`);
@@ -88,7 +86,7 @@ app.post("/login", async (req, res) => {
         if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
             console.log(userData);
             console.log(userData.password + " ------ " + userPassword);
-            if (truePass == true || userData.password === userPassword) {//wether the obj data is valid or not
+            if (truePass || userData.password === userPassword) {//wether the obj data is valid or not
                 const tokenResult = await userData.gernerateToken();
                 res.cookie("logincookie", tokenResult, {
                     expires: new Date(Date.now() + 500000),
