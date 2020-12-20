@@ -6,5 +6,9 @@ window.onload = () => {
     const foodNutrition = document.querySelector(".foodNutrition");
     foodNutrition.addEventListener("click", () => {
         window.location.href = "/foodNutrition";
-    })
+    });
+    const currency = document.querySelector(".currencyConvertor");
+    currency.addEventListener("click", () => {
+        window.location.href = "/currencyConvertor";
+    });
 }
