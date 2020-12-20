@@ -31,7 +31,7 @@ function fetchingApiData() {
         }).then(result => {
             console.log(result);
             finalAmount += result * amount;
-            res.value = finalAmount.toFixed(2);
+            res.value = finalAmount.toFixed(2) + " " + to;
         }).catch(err => {
             console.log(err);
         });
