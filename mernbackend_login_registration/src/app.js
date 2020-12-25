@@ -37,6 +37,26 @@ app.get("/register", (req, res) => {
 app.get("/welcomePage", (req, res) => {
     res.render("welcomePage");
 });
+app.get("/getAllUsers", async (req, res) => {
+    try {
+        const students = await userRegistration.find();
+        console.log(students);
+        const userNames = students.map(({ fullname }) => {//return us an array
+            return fullname;
+        });
+        // res.json({ userNames });r
+        res.send(`<h1 style="text-align:center;">Users Registered With Us</h1> <table style="width:100%; border:1px solid black; border-collapse:collapse;">
+        <tr style="border:1px solid black;">
+        <th style=" font-size:22px;">Names</th>
+            <td style="text-align:center; font-size:18px; border:1px solid black;">${[...userNames]}
+            </td>
+        </tr>
+    </table>`);
+    } catch (error) {
+
+    }
+
+});
 app.post("/register", async (req, res) => {
     try {
         const userName = req.body.name;
@@ -84,8 +104,8 @@ app.post("/login", async (req, res) => {
         const truePass = await bcrypt.compare(userPassword, userData.password);
         console.log(`bcrypt result ${truePass}`);
         if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
-            console.log(userData);
-            console.log(userData.password + " ------ " + userPassword);
+            // console.log(userData);
+            // console.log(userData.password + " ------ " + userPassword);
             if (truePass || userData.password === userPassword) {//wether the obj data is valid or not
                 const tokenResult = await userData.gernerateToken();
                 res.cookie("logincookie", tokenResult, {
@@ -145,11 +165,12 @@ app.get("/foodNutrition", (req, res) => {
 //trying encryption 
 const hashingTryUsingBcrypt = async () => {
     const userHashPassword = await bcrypt.hash("1234", 4);//1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
-    console.log(userHashPassword);
+    // console.log(userHashPassword);
     if (bcrypt.compare("$2a$04$rUWrr8kjkoGHDCkSsKOb8Opj3th9Wp1dfTmWuHxEOboyN5AtuMdLC", "1234")) {//.compare is user to compere cipher text with orignal value thid is used in login
-        console.log(`true`);
+        // console.log(`true`);
     }
-    else console.log(`false`);
+    else { }
+    //  console.log(`false`);
 }
 // ---- end ----hashingTryUsingBcrypt();
 hashingTryUsingBcrypt();
