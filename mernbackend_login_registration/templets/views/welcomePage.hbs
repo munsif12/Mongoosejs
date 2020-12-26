@@ -22,10 +22,10 @@
                 <a href="#home">
                     <li>Home</li>
                 </a>
-                <a href="#gallery">
-                    <li>Gallery</li>
+                <a href="#Projects">
+                    <li>Projects</li>
                 </a>
-                <a href="/welcomePage/secretPage">
+                <a href="#aboutme">
                     <li>About Me</li>
                 </a>
                 <a href="#contect">
@@ -50,11 +50,11 @@
                 <div class="bodyLeft__icons">
                     <a class="icon__mongodb" href="#">
                         {{!-- <img src="css/nodejs.jpg" alt="nodejs"> --}}
-                        <i class="fab fa-envira icon mongoo"></i>
+                        <i title="Download mongoDB" class="fab fa-envira icon mongoo"></i>
                     </a>
                     <a class="icon__nodejs" href="#">
                         {{!-- <img src="css/mongodb.png" alt="nodejs"> --}}
-                        <i class="fab fa-js icon js"></i>
+                        <i title="Download Nodejs" class="fab fa-js icon js"></i>
                     </a>
                 </div>
             </div>
@@ -63,7 +63,7 @@
             {{>welcome__svg}}
         </div>
     </div>
-    <div class="myProjects">
+    <div id="Projects" class="myProjects">
         <h1 class="project__heading">My Projects</h1>
         <div class="projects">
             <div class="covid19 projectName">
@@ -79,7 +79,7 @@
                     </ul>
                 </div>
                 <div class="covid_img project__img">
-                    <img src="css/covidPic.png" alt="" srcset="">
+                    <img style="width: 250px;" src="css/covidPic.png" alt="" srcset="">
                 </div>
             </div>
             <div class="foodNutrition projectName">
@@ -94,7 +94,7 @@
                     </ul>
                 </div>
                 <div class="foodNutrition_img project__img">
-                    <img src="css/foodNutri.PNG" alt="foodNutritionPic" srcset="">
+                    <img style="width: 250px;" src="css/foodNutri.PNG" alt="foodNutritionPic" srcset="">
                 </div>
             </div>
             <div class="currencyConvertor projectName">
@@ -109,7 +109,7 @@
                     </ul>
                 </div>
                 <div class="currencyConvertor project__img">
-                    <img src="css/currencyConvertor.PNG" alt="" srcset="">
+                    <img style="width: 250px;" src="css/currencyConvertor.PNG" alt="" srcset="">
                 </div>
             </div>
             <div class="weatherApp projectName">
@@ -136,6 +136,30 @@
                     <img src="css/nodejs.jpg" alt="" srcset="">
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="about__me" id="aboutme">
+        <div class="left__section">
+            <img src="css/pricture_aboutMe.jpg" alt="mypic" srcset="">
+        </div>
+        <div class="right__section">
+            <div class="aboutme__heading">
+                <h3>MUNSIF ALI MISRI</h3>
+            </div>
+            <div class="aboutme__paragraph">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum
+                    interdum, nisi lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula
+                        venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus
+                        vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In
+                        at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida
+                        venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor
+                        porta.</span></p>
+
+                <button onclick="myFunction()" id="myBtn">Read more...</button>
+            </div>
+            {{!-- <div class="aboutme__moreInfo">
+                <button>Read More</button>
+            </div> --}}
         </div>
     </div>
     <div class="footer">
@@ -154,5 +178,22 @@
         </div>
     </div>
 </body>
+<script>
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+</script>
 
 </html>
