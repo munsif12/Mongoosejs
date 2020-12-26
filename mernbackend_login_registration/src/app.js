@@ -66,7 +66,7 @@ app.post("/register", async (req, res) => {
 
         if ([userName, userEmail, password, confirmPassword] != null && password === confirmPassword) {
             //const userHashPassword = await bcrypt.hash(password, 4);1st pram is user value and 2nd is no of rounds the more number of rounds the more security is heigh.
-            const newUser = new userRegistration({
+            const newUser = new userRegistration({ //creating new user with given info
                 fullname: req.body.name,
                 email: req.body.email,
                 password: req.body.pwd
@@ -78,7 +78,7 @@ app.post("/register", async (req, res) => {
                     httpOnly: true
                 });
                 console.log(`successfull registration with token :${tokenResult}`);
-                const userData = await newUser.save();
+                const userData = await newUser.save();//save user to db
                 console.log(`User Registered : ${userData}`);
                 res.status(201).redirect("/login");
             }
