@@ -298,8 +298,9 @@ body {
 }
 
 /* ABOUT ME STYLING  */
+
 .about__me {
-    height: 70vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -307,8 +308,10 @@ body {
 }
 
 .left__section {
-    height: 70%;
+    height: 60%;
     width: 30%;
+    border-radius: 8px 0px 0px 8px;
+    overflow: hidden;
 }
 
 .left__section>img {
@@ -317,7 +320,7 @@ body {
 }
 
 .right__section {
-    height: 70%;
+    height: 60%;
     width: 30%;
     background: #fff;
     display: flex;
@@ -325,6 +328,8 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    border-radius: 0px 8px 8px 0px;
+    overflow-y: auto;
 }
 
 .right__section .aboutme__heading {
@@ -344,7 +349,7 @@ body {
 
 .right__section .aboutme__paragraph {
     position: absolute;
-    top: 18%;
+    top: 15%;
     left: 10%;
     right: 10%;
     height: 50%;
@@ -353,6 +358,7 @@ body {
 
 .right__section .aboutme__paragraph p {
     color: black;
+    font-size: 13px;
 }
 
 #more {
@@ -362,18 +368,108 @@ body {
 
 .right__section .aboutme__moreInfo {
     position: absolute;
-    top: 75%;
+    top: 70%;
     left: 10%
 }
 
 .right__section .aboutme__paragraph button {
-    margin-top: 28px;
+    margin-top: 20px;
     color: black;
     padding: 10px 15px;
     background: transparent;
     border: 1px solid black;
     border-radius: 4px;
     outline: none;
+}
+
+/*contect us styling */
+.contectUs {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(330deg, rgb(0, 125, 255), rgb(30, 40, 81));
+}
+
+.dataCont {
+    height: 70%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(63, 61, 63);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.dataItemsLeft {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.itemsLeft {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+}
+
+.itemsLeft .con {
+    position: relative;
+    top: 35px;
+    left: 40px;
+    font-size: 32px;
+    color: rgb(252, 75, 112);
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.itemsLeft .us {
+    position: relative;
+    top: 36px;
+    left: 40px;
+    font-size: 32px;
+    color: rgb(252, 75, 112);
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.itemsLeft .us::after {
+    content: "";
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    bottom: 0;
+    left: 3px;
+    background: rgb(252, 75, 112);
+}
+
+.contectInfo {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+}
+
+.contectInfo .conInfo {
+    position: relative;
+    left: 40px;
+    bottom: 40px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: rgb(148, 148, 148);
+}
+
+.dataItemsRight {
+    height: 100%;
+    width: 50%;
+    border: 1px solid orange;
 }
 
 /* footer styling  */
