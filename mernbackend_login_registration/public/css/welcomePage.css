@@ -21,6 +21,10 @@ html {
     border-radius: 500px;
 }
 
+::placeholder {
+    color: rgb(148, 148, 148);
+}
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(330deg, rgb(0, 125, 255), rgb(30, 40, 81));
@@ -36,11 +40,6 @@ a {
     text-decoration: none;
 }
 
-::placeholder {
-    color: black;
-    font-size: 15px;
-    opacity: 0.8;
-}
 
 body {
     height: 100vh;
@@ -393,8 +392,8 @@ body {
 }
 
 .dataCont {
-    height: 70%;
-    width: 60%;
+    height: 50%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -444,7 +443,7 @@ body {
     position: absolute;
     width: 10%;
     height: 10%;
-    bottom: 0;
+    bottom: -5px;
     left: 3px;
     background: rgb(252, 75, 112);
 }
@@ -469,7 +468,64 @@ body {
 .dataItemsRight {
     height: 100%;
     width: 50%;
-    border: 1px solid orange;
+}
+
+.formCont {
+    height: 100%;
+    width: 100%;
+}
+
+.formData {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    top: 35px;
+}
+
+.input {
+    height: 15%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.inputMessage {
+    margin-top: 20px;
+}
+
+.inName,
+.inEmail,
+.inContectUs,
+.inMessage {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(148, 148, 148);
+    outline: none;
+    background: transparent;
+}
+
+.buttons {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.submit,
+.cancel {
+    border: none;
+    background: transparent;
+    color: rgb(252, 75, 112);
+    font-weight: bold;
+    margin: 8px 10px 0px 10px;
+    text-transform: uppercase;
 }
 
 /* footer styling  */
