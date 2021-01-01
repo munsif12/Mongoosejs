@@ -8,6 +8,7 @@ const request = require("request");
 const cookieParser = require("cookie-parser");
 require("./connection/connection");
 const userRegistration = require("./schemaModels/schemaModels");
+const userFeedback = require("./schemaModels/userFeedbackSchema");
 const async = require("hbs/lib/async");
 const port = process.env.PORT || 8000;
 const app = express();
@@ -37,6 +38,28 @@ app.get("/register", (req, res) => {
 app.get("/welcomePage", (req, res) => {
     res.render("welcomePage");
 });
+app.post("/welcomePage", async (req, res) => {
+    try {
+        const userName = req.body.name;
+        const userEmail = req.body.email;
+        const userContectInfo = req.body.contectInfo;
+        const userMessage = req.body.message;
+        const newFeedback = new userFeedback({
+            name: userName,
+            email: userEmail,
+            contectUs: userContectInfo,
+            message: userMessage
+        });
+        const userSaved = await newFeedback.save();
+        if (userSaved != null) {
+            res.status(201).send(" Your feedback has been saved Thanks");
+        }
+        else
+            res.status(500).send(" Your feedback hasen't been saved Try again");
+    } catch (error) {
+        console.log(`Error while getting user Feedback  : ${error}`);
+    }
+});
 app.get("/getAllUsers", async (req, res) => {
     try {
         const students = await userRegistration.find();
@@ -53,7 +76,7 @@ app.get("/getAllUsers", async (req, res) => {
         </tr>
     </table>`);
     } catch (error) {
-
+        console.log(`Error while getting all registered users : ${error}`);
     }
 
 });
@@ -100,11 +123,13 @@ app.post("/login", async (req, res) => {
     try {
         const userEmail = req.body.email;
         const userPassword = req.body.pwd;
+        console.log(`passwrod is : ${userPassword}`);
         const userData = await userRegistration.findOne({ email: userEmail });//match if the email exists
+        console.log(userData);
         const truePass = await bcrypt.compare(userPassword, userData.password);
         console.log(`bcrypt result ${truePass}`);
         if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
-            // console.log(userData);
+            console.log(userData);
             // console.log(userData.password + " ------ " + userPassword);
             if (truePass || userData.password === userPassword) {//wether the obj data is valid or not
                 const tokenResult = await userData.gernerateToken();
