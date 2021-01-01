@@ -526,6 +526,8 @@ body {
     font-weight: bold;
     margin: 8px 10px 0px 10px;
     text-transform: uppercase;
+    outline: none;
+    cursor: pointer;
 }
 
 /* footer styling  */
