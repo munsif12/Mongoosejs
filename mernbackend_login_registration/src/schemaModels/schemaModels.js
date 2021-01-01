@@ -6,9 +6,9 @@ const async = require("hbs/lib/async");
 const registerUser = new mongoose.Schema({
     fullname: {
         type: String,
-        required: [true, "Name is required..."],
-        minlength: [4, "Name must be 4 characters..."],
-        maxlength: [25, "Name is greater then 25 characters..."],
+        required: [true, "Message is required..."],
+        minlength: [4, "Message must be 4 characters..."],
+        maxlength: [25, "Message is greater then 25 characters..."],
         trim: true
     },
     email: {
@@ -57,7 +57,8 @@ registerUser.pre("save", async function (next) {
     }
     next();
 })
-//creating table
+//creating table for user
 const UserRegistration = new mongoose.model("Userregistration", registerUser);
+
 //now wxport the module
 module.exports = UserRegistration;
