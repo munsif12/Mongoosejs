@@ -175,23 +175,26 @@
             </div>
             <div class="dataItemsRight">
                 <div class="formCont">
-                    <form class="formData" action="">
+                    <form class="formData" action="/welcomePage" method="POST">
                         <div class="input">
-                            <input class="inName" type="text" name="name" id="name" placeholder="Name">
+                            <input class="inName" type="text" name="name" id="name" placeholder="Name"
+                                autocomplete="none">
                         </div>
                         <div class="input">
-                            <input class="inEmail" type="text" name="email" id="email" placeholder="Email">
+                            <input class="inEmail" type="text" name="email" id="email" placeholder="Email"
+                                autocomplete="none">
                         </div>
                         <div class="input">
                             <input class="inContectUs" type="text" name="contectInfo" id="contectInfo"
-                                placeholder="Contect Info">
+                                placeholder="Contect Info" autocomplete="none">
                         </div>
                         <div class="input inputMessage">
-                            <input class="inMessage" type="text" name="message" id="message" placeholder="Message">
+                            <input class="inMessage" type="text" name="message" id="message" placeholder="Message"
+                                autocomplete="none">
                         </div>
                         <div class="buttons">
                             <input class="submit" type="submit" value="Send">
-                            <input class="cancel" type="button" value="Cancel">
+                            <input class="cancel" type="button" value="Cancel" id="cancel">
                         </div>
                     </form>
                 </div>
