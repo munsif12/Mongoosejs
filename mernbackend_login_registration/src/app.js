@@ -17,7 +17,6 @@ app.use(express.static(path.join(__dirname, "../public")));// defiining path for
 app.set("view engine", "hbs");//telling express file to set up handle bars which is hbs
 app.set("views", path.join(__dirname, "../templets/views"));//insted of looking views folder in look into templetsPath var
 hbs.registerPartials(path.join(__dirname, "../templets/partials"))
-
 app.use(express.json());//if the data is comming in json format
 app.use(express.urlencoded({ extended: false }));//if the data is comming from url
 app.use(cookieParser());
@@ -60,6 +59,7 @@ app.post("/welcomePage", async (req, res) => {
         console.log(`Error while getting user Feedback  : ${error}`);
     }
 });
+
 app.get("/getAllUsers", async (req, res) => {
     try {
         const students = await userRegistration.find();
@@ -68,7 +68,7 @@ app.get("/getAllUsers", async (req, res) => {
             return fullname;
         });
         // res.json({ userNames });r
-        res.send(`<h1 style="text-align:center;">Users Registered With Us</h1> <table style="width:100%; border:1px solid black; border-collapse:collapse;">
+        res.send(`<h1 style="text-align:center;color:blue;">Users Registered With Us</h1> <table style="width:100%; border:1px solid black; border-collapse:collapse;">
         <tr style="border:1px solid black;">
         <th style=" font-size:22px;">Names</th>
             <td style="text-align:center; font-size:18px; border:1px solid black;">${[...userNames]}
@@ -78,8 +78,54 @@ app.get("/getAllUsers", async (req, res) => {
     } catch (error) {
         console.log(`Error while getting all registered users : ${error}`);
     }
-
 });
+const arrayOfNames = [];
+const feedbackArray = [];
+app.get("/userFeedbacks", async (req, res) => {
+    try {
+        const usersFeedbacks = await userFeedback.find();
+        // res.status(200).json(usersFeedbacks);
+        const userNames = usersFeedbacks.map(({ name }) => {//return us an array
+            return name;
+        });
+        for (let i = 0; i < userNames.length; i++) {
+            arrayOfNames[i] = userNames[i];
+        }
+
+        const feedback = usersFeedbacks.map(({ message }) => {//return us an array
+            return message;
+        });
+        for (let i = 0; i < feedback.length; i++) {
+            feedbackArray[i] = feedback[i];
+        }
+
+        console.log(...arrayOfNames);//to check wether working or not
+        console.log(...feedbackArray);//to check wether working or not
+
+        res.render("userFeedback", {
+            name_one: arrayOfNames[0],
+            feedback_one: feedbackArray[0],
+
+            name_two: arrayOfNames[1],
+            feedback_two: feedbackArray[1],
+
+            name_three: arrayOfNames[2],
+            feedback_three: feedbackArray[2],
+
+            name_four: arrayOfNames[3],
+            feedback_four: feedbackArray[3],
+
+            name_five: arrayOfNames[4],
+            feedback_five: feedbackArray[4],
+
+            name_six: arrayOfNames[5],
+            feedback_six: feedbackArray[5],
+        })
+    } catch (error) {
+        console.log("Error while getting users feedback")
+        res.status(500).send("Error while getting users feedback");
+    }
+})
 app.post("/register", async (req, res) => {
     try {
         const userName = req.body.name;
@@ -125,7 +171,6 @@ app.post("/login", async (req, res) => {
         const userPassword = req.body.pwd;
         console.log(`passwrod is : ${userPassword}`);
         const userData = await userRegistration.findOne({ email: userEmail });//match if the email exists
-        console.log(userData);
         const truePass = await bcrypt.compare(userPassword, userData.password);
         console.log(`bcrypt result ${truePass}`);
         if (userData != null && Object.keys(userData).length > 1) {//if the obj is valid
