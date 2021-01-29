@@ -184,6 +184,10 @@ app.post("/login", async (req, res) => {
                     // secure:true => only run when url type is https 
                 });
                 console.log(tokenResult);
+                // trying to get username but not working
+                // res.status(201).render("welcomePage", {
+                //     name: userData.fullname
+                // });
                 res.status(201).redirect("welcomePage");
             }
             else
