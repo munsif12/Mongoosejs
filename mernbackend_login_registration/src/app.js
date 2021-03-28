@@ -43,18 +43,24 @@ app.post("/welcomePage", async (req, res) => {
         const userEmail = req.body.email;
         const userContectInfo = req.body.contectInfo;
         const userMessage = req.body.message;
-        const newFeedback = new userFeedback({
-            name: userName,
-            email: userEmail,
-            contectUs: userContectInfo,
-            message: userMessage
-        });
-        const userSaved = await newFeedback.save();
-        if (userSaved != null) {
-            res.status(201).send(" Your feedback has been saved Thanks");
+
+        if (userName !== "" && userEmail !== "" && userContectInfo !== "" && userMessage !== "") {
+            const newFeedback = new userFeedback({
+                name: userName,
+                email: userEmail,
+                contectUs: userContectInfo,
+                message: userMessage
+            });
+            const userSaved = await newFeedback.save();
+            if (userSaved != null) {
+                res.status(201).send(" Your feedback has been saved Thanks");
+            }
+            else
+                res.status(500).send(" Your feedback hasen't been saved Try again");
         }
         else
-            res.status(500).send(" Your feedback hasen't been saved Try again");
+            res.status(500).send(" Your feedback can't be empty Try again");
+
     } catch (error) {
         console.log(`Error while getting user Feedback  : ${error}`);
     }
